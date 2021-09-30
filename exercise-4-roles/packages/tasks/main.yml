@@ -1,0 +1,5 @@
+---
+# tasks file for packages
+- name: Remove/Install the selected packages
+  include_tasks: ./install.yaml
+  with_items: "{{ packages }}"

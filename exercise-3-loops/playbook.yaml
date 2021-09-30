@@ -1,0 +1,17 @@
+- name: Loop Example
+  hosts: target1
+  vars:
+    names:
+    - name: Manu
+      age: 32
+    - name: Naithu
+      age: 3
+    - name: Achu
+      age: 27
+    - name: Deni
+      age: 60
+  tasks:
+  - name: "Say Hello"
+    debug:
+      msg: "Hello {{ item.name }}. You are {{ item.age }} years old"
+    with_items: '{{ names }}'

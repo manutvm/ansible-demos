@@ -1,0 +1,6 @@
+---
+- name: "Install {{ item.name }} package"
+  yum:
+    name: "{{ item.name }}"
+    state: present
+  become: yes

@@ -1,0 +1,7 @@
+- name: Playbook to copy a file to target machines
+  hosts: targets
+  tasks:
+    - name: Copy the file test.txt to target machine
+      copy:
+        src: /tmp/test.txt
+        dest: /tmp/test.txt

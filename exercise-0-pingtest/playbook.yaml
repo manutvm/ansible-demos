@@ -1,0 +1,5 @@
+- name: Check all ansible hosts are reachable
+  hosts: all
+  tasks:
+    - name: Do a Ping test to hosts
+      ping: 

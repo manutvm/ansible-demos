@@ -1,0 +1,15 @@
+- name: Install a set of RedHat Packages
+  hosts: targets
+  vars:
+    packages:
+    - name: nginx
+      required: True
+    - name: httpd
+      required: True
+    - name: mysql
+      required: False
+  tasks:
+  - name: Install the required packages
+    include_tasks: ./install.yaml
+    when: ansible_facts.os_family == "RedHat" and item.required
+    loop: "{{ packages }}"

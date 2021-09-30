@@ -1,0 +1,27 @@
+- name: Install Packages
+  hosts: targets
+  vars:
+    package: "mysql"
+    age: 16
+  tasks:
+  - name: "Install package {{ package }}"
+    command: "echo Installing Package {{ package }}"
+  - name: "Greater than 15"
+    command: "echo You are greater than 15"
+    when: age  >= 15
+  - name: "Less than 15"
+    command: "echo You are less than 15"
+    when: age < 15
+  - name: Print all available facts
+    debug:
+      var: ansible_facts.os_family
+  - name: Check OS Family is RedHat
+    debug:
+      msg: "echo OS Family is {{ ansible_facts.os_family }}"
+    when: ansible_facts.os_family == "RedHat"
+  - name: "Install Nginx in {{ ansible_facts.os_family }} Machine: {{ ansible_facts.hostname }}"
+    yum:
+      name: nginx
+      state: present
+    when: ansible_facts.os_family == "RedHat"
+    become: yes

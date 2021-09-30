@@ -1,0 +1,15 @@
+
+- name: Install/Remove package via roles
+  hosts: controllers
+  roles:
+  - packages
+  vars:
+    packages:
+      - name: nginx
+        status: absent
+      - name: httpd
+        status: absent
+      - name: mysql
+        status: absent
+      - name: git
+        status: present
