@@ -1,0 +1,5 @@
+---
+# tasks file for docker-network
+- name: "Create required docker networks"
+  include_tasks: ./create.yaml
+  with_items: "{{ networks }}"

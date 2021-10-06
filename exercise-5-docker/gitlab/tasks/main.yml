@@ -1,0 +1,18 @@
+---
+# tasks file for gitlab
+- name: "Create Gitlab docker container"
+  docker_container:
+    name: "{{ gitlab.name }}"
+    image: "{{ gitlab.image }}"
+    state: "{{ gitlab.state }}"
+    restart: "{{ gitlab.restart }}"
+    privileged: yes
+    restart_policy: "{{ gitlab.restart_policy }}"
+    purge_networks: yes
+    hostname: "{{ gitlab.hostname }}"
+    networks: "{{ gitlab.networks }}"
+    volumes:
+      - "gitlab-data:/var/opt/gitlab"
+      - "gitlab-config:/etc/gitlab"
+      - "gitlab-logs:/var/log/gitlab"
+    env: "{{ gitlab.env }}"

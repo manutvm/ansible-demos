@@ -1,0 +1,14 @@
+---
+# tasks file for influxdb
+- name: "Create container {{ influxdb.name }}"
+  docker_container:
+    name: "{{ influxdb.name }}"
+    hostname: "{{ influxdb.host_name }}"
+    image: "{{ influxdb.image }}"
+    volumes:
+    - "{{ influxdb.volume_name }}:/root/.influxdbv2"
+    exposed_ports: 
+    - "{{ influxdb.exposed_ports }}"
+    ports:
+    - "{{ influxdb.exposed_ports }}:{{ influxdb.exposed_ports }}"
+    state: "{{ influxdb.state }}"

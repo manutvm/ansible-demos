@@ -1,0 +1,7 @@
+- name: "Create docker network {{ item.network_name }}"
+  docker_network:
+    name: "{{ item.network_name }}"
+    state: "{{ item.state }}"
+    ipam_options:
+      subnet: "{{ item.subnet }}"
+      gateway: "{{ item.gateway }}"

@@ -1,0 +1,43 @@
+- name: Create docker volume
+  hosts: controllers
+  roles:
+  - docker-volume
+  - docker-network
+#  - influxdb
+  - gitlab
+  vars:
+    volumes: 
+    - volume_name: influx-volume
+      state: absent
+    - volume_name: gitlab-config
+      state: present
+    - volume_name: gitlab-logs
+      state: present
+    - volume_name: gitlab-data
+      state: present
+    networks: 
+    - network_name: devops-network
+      state: present
+      subnet: 172.28.0.0/16
+      gateway: 172.28.0.1
+    influxdb:
+      name: influxdb
+      host_name: influxdb.example.com
+      image: quay.io/influxdb/influxdb:v2.0.3
+      volume_name: influx-volume
+      exposed_ports: 8086
+      state: absent
+    gitlab:
+      name: gitlab
+      hostname: gitlab.example.com
+      image: gitlab/gitlab-ce:14.3.2-ce.0
+      state: started
+      restart: no
+      restart_policy: always
+      networks: 
+      - name: devops-network
+        ipv4_address: 172.28.0.2
+      env:
+        GITLAB_OMNIBUS_CONFIG: |
+          external_url 'https://gitlab.example.com'
+      

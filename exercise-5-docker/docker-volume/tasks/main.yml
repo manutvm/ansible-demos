@@ -1,0 +1,6 @@
+---
+# tasks file for docker-volume
+
+- name: "Create a docker volumes"
+  include_tasks: ./create.yaml
+  with_items: "{{ volumes }}"

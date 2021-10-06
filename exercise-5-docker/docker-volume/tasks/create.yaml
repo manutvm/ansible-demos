@@ -1,0 +1,4 @@
+- name: "Create docker volume {{ item.volume_name }}"
+  docker_volume:
+    name: "{{ item.volume_name }}"
+    state: "{{ item.state }}"
