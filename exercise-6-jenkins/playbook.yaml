@@ -1,0 +1,5 @@
+- name: Install Jenkins as docker container
+  hosts: controllers
+  roles:
+  - jenkins
+  

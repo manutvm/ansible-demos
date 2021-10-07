@@ -1,0 +1,25 @@
+---
+# tasks file for jenkins
+- name: Create Jenkins root volume
+  file:
+    path: /home/frp/docker/volumes/jenkins
+    state: directory
+    owner: 1000
+    group: 1000
+    mode: 0770
+
+- name: Create Jenkins data volume
+  file:
+    path: /home/frp/docker/volumes/jenkins/data
+    state: directory
+    owner: 1000
+    group: 1000
+    mode: 0770
+
+- name: Create Jenkins .ssh volume
+  file:
+    path: /home/frp/docker/volumes/jenkins/data/.ssh
+    state: directory
+    owner: 1000
+    group: 1000
+    mode: 0700
